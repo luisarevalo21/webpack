@@ -3,10 +3,14 @@ const path = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const { defer } = require("lodash");
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    index: "./src/index.js",
+    print: "./src/print.js",
+  },
   output: {
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
+    clean: true,
   },
 
   module: {
@@ -25,7 +29,6 @@ module.exports = {
     new htmlWebpackPlugin({
       filename: "index.html",
       inject: "body",
-      scriptLoading: "defer",
       template: "./src/index.html",
     }),
   ],
